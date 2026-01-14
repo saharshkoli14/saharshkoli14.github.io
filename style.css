@@ -429,3 +429,36 @@ input:focus, textarea:focus{
   .skills-grid{ grid-template-columns: 1fr; }
   .form-row{ grid-template-columns: 1fr; }
 }
+
+.btn {
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #6a7cff, #7f5bff);
+  color: #fff;
+}
+
+.btn.secondary {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.btn.outline {
+  background: transparent;
+  color: #9aa5ff;
+  border: 1px dashed #9aa5ff;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(106,124,255,0.25);
+}
