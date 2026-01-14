@@ -609,3 +609,79 @@ input:hover, textarea:hover{
     scroll-behavior: auto !important;
   }
 }
+
+/* Keep hero-right stacked with spacing */
+.hero-right{
+  display:grid;
+  gap: 16px;
+  align-content: start;
+}
+
+/* Profile card (photo + name) */
+.profile-card{
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,0.085), rgba(255,255,255,0.04));
+  box-shadow: var(--shadow);
+  padding: 16px;
+  display:flex;
+  gap: 14px;
+  align-items:center;
+  position: relative;
+  overflow:hidden;
+}
+
+.profile-card::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(700px 260px at 20% 10%, rgba(25,211,255,0.14), transparent 55%),
+    radial-gradient(700px 260px at 70% 90%, rgba(124,92,255,0.16), transparent 55%);
+  pointer-events:none;
+}
+
+.profile-ring{
+  width: 86px;
+  height: 86px;
+  border-radius: 999px;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 20px rgba(124,92,255,0.22), 0 0 16px rgba(25,211,255,0.18);
+  flex: 0 0 auto;
+}
+
+.profile-img{
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 2px solid rgba(7,10,18,0.65);
+  display:block;
+}
+
+.profile-meta{ position: relative; z-index: 1; }
+.profile-name{
+  font-weight: 900;
+  letter-spacing: -0.2px;
+  font-size: 16px;
+  line-height: 1.2;
+}
+.profile-role{
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+/* Hover effect */
+@media (hover:hover){
+  .profile-card{
+    transition: transform .22s ease, border .22s ease, background .22s ease;
+  }
+  .profile-card:hover{
+    transform: translateY(-2px);
+    border-color: rgba(25,211,255,0.35);
+    background: rgba(255,255,255,0.06);
+  }
+}
