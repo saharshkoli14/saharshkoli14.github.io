@@ -3,30 +3,390 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saharsh Kamod Koli| Portfolio</title>
+  <title>Saharsh Kamod Koli | Portfolio</title>
+  <meta name="description" content="Data Analytics & Engineering | Applied ML & Data Systems" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <header>
-    <h1>Hello, welcome to my Website 👋</h1>
-    <p>Data Analytics & Engineering | Applied ML & Data Systems</p>
+  <!-- Background -->
+  <div class="bg-gradient"></div>
+  <div class="bg-grid"></div>
+
+  <!-- Navbar -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#top">
+        <span class="logo-dot"></span>
+        <span class="logo-text">Saharsh</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#honors">Honors</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
 
-  <section>
-    <h2>Projects</h2>
-    <ul>
-      <li>Cybersecurity Threat & Vulnerability Analytics (EDA)</li>
-      <li>ATC Voice Analytics</li>
-      <li>NLP-SQL Transformer</li>
-      <li>Financial Chatbot</li>
-    </ul>
-  </section>
+  <!-- Hero -->
+  <main id="top">
+    <section class="hero container">
+      <div class="hero-left">
+        <p class="pill reveal">
+          <span class="spark"></span> Data Analytics & Engineering • Applied ML • Data Systems
+        </p>
 
-  <footer>
-    <p>© 2026 Saharsh Kamdo Koli</p>
-  </footer>
+        <h1 class="reveal">
+          Hello, welcome to my website 👋
+          <span class="name">I’m Saharsh Kamod Koli</span>
+        </h1>
+
+        <p class="subtitle reveal">
+          I build end-to-end data solutions—pipelines, analytics, dashboards, and ML/NLP systems—
+          focused on clarity, scalability, and real-world impact.
+        </p>
+
+        <div class="hero-cta reveal">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn ghost" href="#contact">Contact Me</a>
+        </div>
+
+        <div class="quick-links reveal">
+          <!-- Replace these links with your real ones -->
+          <a class="chip" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="chip" href="https://github.com/saharshkoli14" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="chip" href="mailto:saharshkoli7007@gmail.com">Email</a>
+          <!-- Optional: add resume pdf link if you have -->
+          <!-- <a class="chip" href="YOUR_RESUME_LINK" target="_blank" rel="noreferrer">Resume</a> -->
+        </div>
+      </div>
+
+      <div class="hero-right reveal">
+        <div class="glass-card">
+          <h3>What I do</h3>
+          <ul class="checklist">
+            <li>Cloud-native ETL & analytics pipelines (AWS / GCP)</li>
+            <li>Data modeling, cleaning, and metric definitions</li>
+            <li>Dashboards & storytelling (Tableau / Power BI)</li>
+            <li>Applied ML/NLP systems (QA, Text-to-SQL, RAG)</li>
+          </ul>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-num">25%</div>
+              <div class="stat-label">Latency improved (reporting)</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">100+</div>
+              <div class="stat-label">Audio samples / queries handled</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">800+</div>
+              <div class="stat-label">Records managed (Siemens)</div>
+            </div>
+          </div>
+
+          <p class="micro">
+            *Numbers reflect highlights from internships/projects. Replace/adjust as needed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section container">
+      <div class="section-head reveal">
+        <h2>About Me</h2>
+        <p>
+          Python-focused data engineer / analytics practitioner with experience building pipelines,
+          data workflows, and ML-powered systems across analytics and GenAI.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card reveal">
+          <h3>Snapshot</h3>
+          <p>
+            I enjoy turning messy data into decision-ready systems: clean datasets, reliable pipelines,
+            and dashboards stakeholders actually trust. I focus on measurable outcomes and production-minded execution.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">AWS</span>
+            <span class="tag">GCP</span>
+            <span class="tag">Tableau</span>
+            <span class="tag">NLP/LLMs</span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3>Education</h3>
+          <div class="edu">
+            <div class="edu-item">
+              <div class="edu-title">George Mason University</div>
+              <div class="edu-sub">M.S. Data Analytics Engineering (GPA ~3.9/4)</div>
+              <div class="edu-sub">Fairfax, VA • 2024–2025</div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-title">University of Mumbai</div>
+              <div class="edu-sub">B.E. Electronics & Telecommunication (GPA ~3.46/4)</div>
+              <div class="edu-sub">2019–2023</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section container">
+      <div class="section-head reveal">
+        <h2>Experience</h2>
+        <p>Highlights focused on data ownership, automation, stakeholder impact, and delivery.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item card reveal">
+          <div class="timeline-top">
+            <h3>Data Analytics Engineer — Yes Tech Corp</h3>
+            <span class="muted">Remote • 07/2025 – Present</span>
+          </div>
+          <ul>
+            <li>Engineered AWS-based pipelines (Python, DynamoDB, Athena) for user interaction analytics.</li>
+            <li>Automated cleaning + aggregation workflows; improved insight delivery latency by ~25%.</li>
+            <li>Translated product requirements into scalable analytics/data models; identified optimization opportunities.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item card reveal">
+          <div class="timeline-top">
+            <h3>Data & Reporting Intern — Siemens EA Factory</h3>
+            <span class="muted">Goa, India • 06/2022 – 07/2022</span>
+          </div>
+          <ul>
+            <li>Designed/maintained structured reporting database; managed 800+ records for tracking and analysis.</li>
+            <li>Automated entry/filtering; cut manual effort ~30% and improved accessibility.</li>
+            <li>Built dashboards/reports used by managers for operational decision-making.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item card reveal">
+          <div class="timeline-top">
+            <h3>Business & Data Support Intern — Numerouno</h3>
+            <span class="muted">Mumbai, India • 11/2022 – 01/2023</span>
+          </div>
+          <ul>
+            <li>Supported weekly reporting across 50+ client interactions and identified recurring trends.</li>
+            <li>Helped drive faster resolution and improved customer satisfaction through data-driven support.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section container">
+      <div class="section-head reveal">
+        <h2>Projects</h2>
+        <p>Well-organized, applied projects you can click to explore on GitHub.</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- IMPORTANT: Replace the repo links below with your actual repo URLs -->
+        <a class="project-card card reveal" href="https://github.com/saharshkoli14/cybersecurity-threat-vulnerability-eda" target="_blank" rel="noreferrer">
+          <div class="project-top">
+            <h3>Cybersecurity Threat & Vulnerability Analytics (EDA)</h3>
+            <span class="badge">R • EDA • Risk Insights</span>
+          </div>
+          <p>
+            Exploratory analysis on vulnerability records: severity, exploitability, EPSS signals, trends and correlations to support prioritization.
+          </p>
+          <div class="project-tags">
+            <span class="tag">tidyverse</span><span class="tag">ggplot2</span><span class="tag">corrplot</span>
+          </div>
+          <div class="project-link">Open Repo →</div>
+        </a>
+
+        <a class="project-card card reveal" href="https://github.com/saharshkoli14/NLP---SQL-Transformer-" target="_blank" rel="noreferrer">
+          <div class="project-top">
+            <h3>NLP–SQL Transformer</h3>
+            <span class="badge">NLP • Gradio • Text-to-SQL</span>
+          </div>
+          <p>
+            A Gradio-powered chatbot that converts natural language questions into executable SQL queries over uploaded CSV files.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">Transformers</span><span class="tag">SQL</span>
+          </div>
+          <div class="project-link">Open Repo →</div>
+        </a>
+
+        <!-- If you don't have a repo link yet, keep # and update later -->
+        <a class="project-card card reveal" href="#" target="_blank" rel="noreferrer">
+          <div class="project-top">
+            <h3>ATC Voice Analytics Dashboard</h3>
+            <span class="badge">Audio → Data • NLP • Safety</span>
+          </div>
+          <p>
+            Pipeline for processing ATC audio into structured datasets (segmentation, cleanup, transcription) for trend/safety analytics.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">Pipelines</span><span class="tag">NLP</span>
+          </div>
+          <div class="project-link">Open Repo →</div>
+        </a>
+
+        <a class="project-card card reveal" href="#" target="_blank" rel="noreferrer">
+          <div class="project-top">
+            <h3>Financial Chatbot (DBQA / NLP)</h3>
+            <span class="badge">QA • Entity Extraction</span>
+          </div>
+          <p>
+            Question-answering over structured financial datasets using NLP for entity/constraint extraction and query reasoning.
+          </p>
+          <div class="project-tags">
+            <span class="tag">spaCy</span><span class="tag">Python</span><span class="tag">DBQA</span>
+          </div>
+          <div class="project-link">Open Repo →</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section container">
+      <div class="section-head reveal">
+        <h2>Skills</h2>
+        <p>My most-used tools for data systems, analytics, and applied ML.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="card reveal">
+          <h3>Programming</h3>
+          <div class="tag-row">
+            <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">R</span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3>Data Engineering</h3>
+          <div class="tag-row">
+            <span class="tag">ETL/ELT</span><span class="tag">Data Cleaning</span><span class="tag">Kafka (basic)</span>
+            <span class="tag">Spark (basic)</span><span class="tag">BigQuery</span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3>Cloud</h3>
+          <div class="tag-row">
+            <span class="tag">AWS (S3, Athena, Redshift, Lambda)</span>
+            <span class="tag">GCP (BigQuery)</span>
+            <span class="tag">Azure (familiar)</span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3>Visualization</h3>
+          <div class="tag-row">
+            <span class="tag">Tableau</span><span class="tag">Power BI</span><span class="tag">Excel</span>
+            <span class="tag">ggplot2</span><span class="tag">Matplotlib</span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3>ML / NLP</h3>
+          <div class="tag-row">
+            <span class="tag">Transformers</span><span class="tag">spaCy</span><span class="tag">LLMs/GenAI</span>
+            <span class="tag">Text-to-SQL</span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3>Tools</h3>
+          <div class="tag-row">
+            <span class="tag">Git</span><span class="tag">VS Code</span><span class="tag">Jupyter</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Honors & Activities -->
+    <section id="honors" class="section container">
+      <div class="section-head reveal">
+        <h2>Honors & Activities</h2>
+        <p>Beyond work—sports, events, and what keeps me energized.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card reveal">
+          <h3>Sports</h3>
+          <ul>
+            <li>🥋 Taekwondo (professional level) — 7 years</li>
+            <li>🏏 Cricket — 2 years</li>
+            <li>⚽ Interests: cricket, football, and competitive video gaming</li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <h3>Events & Highlights</h3>
+          <ul>
+            <li>Attended AWS Summit (Washington, D.C.) — GenAI, modernization, cloud analytics</li>
+            <li>Attended AI + Robotics Summit (Washington, D.C.)</li>
+            <li>Submitted bridge maintenance project paper to FHWA InfoBridge</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section container">
+      <div class="section-head reveal">
+        <h2>Contact</h2>
+        <p>Send me a message—this form opens your email app with everything pre-filled.</p>
+      </div>
+
+      <div class="contact-wrap card reveal">
+        <form id="contactForm" class="contact-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Your Name</label>
+              <input id="name" name="name" type="text" placeholder="John Doe" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Your Email</label>
+              <input id="email" name="email" type="email" placeholder="john@email.com" required />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" placeholder="Hi Saharsh, I'd like to connect about..." required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Send Message</button>
+            <a class="btn ghost" href="mailto:saharshkoli7007@gmail.com">Or email directly</a>
+          </div>
+
+          <p class="micro muted">
+            Want a “real” contact form (no email client)? Use Formspree and I’ll plug it in.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer container">
+      <p>© <span id="year"></span> Saharsh Kamod Koli • Built on GitHub Pages</p>
+    </footer>
+  </main>
 
   <script src="script.js"></script>
 </body>
 </html>
-
