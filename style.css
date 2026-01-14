@@ -574,6 +574,12 @@ input:hover, textarea:hover{
 
 /* Responsive */
 @media (max-width: 920px){
+  .profile-ring{
+    width: 180px;
+    height: 180px;
+  }
+}
+@media (max-width: 920px){
   .hero{ grid-template-columns: 1fr; }
   .stats{ grid-template-columns: repeat(3, 1fr); }
   .projects-grid{ grid-template-columns: 1fr; }
@@ -619,59 +625,48 @@ input:hover, textarea:hover{
 
 /* Profile card (photo + name) */
 .profile-card{
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(255,255,255,0.085), rgba(255,255,255,0.04));
-  box-shadow: var(--shadow);
-  padding: 16px;
   display:flex;
-  gap: 14px;
+  flex-direction:column;
   align-items:center;
-  position: relative;
-  overflow:hidden;
-}
-
-.profile-card::before{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  background:
-    radial-gradient(700px 260px at 20% 10%, rgba(25,211,255,0.14), transparent 55%),
-    radial-gradient(700px 260px at 70% 90%, rgba(124,92,255,0.16), transparent 55%);
-  pointer-events:none;
+  gap:14px;
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+  margin-bottom: 20px;
 }
 
 .profile-ring{
-  width: 86px;
-  height: 86px;
-  border-radius: 999px;
-  padding: 3px;
+  position:relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  padding: 4px;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
-  box-shadow: 0 0 20px rgba(124,92,255,0.22), 0 0 16px rgba(25,211,255,0.18);
-  flex: 0 0 auto;
 }
 
 .profile-img{
-  width: 100%;
-  height: 100%;
-  border-radius: 999px;
-  object-fit: cover;
-  border: 2px solid rgba(7,10,18,0.65);
-  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+  border: 4px solid var(--bg);
 }
 
-.profile-meta{ position: relative; z-index: 1; }
-.profile-name{
-  font-weight: 900;
-  letter-spacing: -0.2px;
-  font-size: 16px;
-  line-height: 1.2;
+.profile-meta{
+  text-align:center;
 }
+
+.profile-name{
+  font-size: 18px;
+  font-weight: 700;
+}
+
 .profile-role{
-  margin-top: 6px;
   font-size: 13px;
   color: var(--muted);
-  line-height: 1.35;
+  margin-top: 4px;
 }
 
 /* Hover effect */
@@ -685,3 +680,4 @@ input:hover, textarea:hover{
     background: rgba(255,255,255,0.06);
   }
 }
+
