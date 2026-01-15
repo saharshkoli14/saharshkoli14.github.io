@@ -160,18 +160,36 @@ body{
   border-radius: 6px;
 }
 
-/* Hero */
+/* =========================
+   HERO (NEW LAYOUT SUPPORT)
+   ========================= */
+
+/* If your HTML uses hero-photo + hero-content, these styles apply.
+   If not, they won't break anything. */
 .hero{
-  padding: 36px 0 18px; /* tightened to reduce empty space */
+  padding: 34px 0 14px;
   display:grid;
-  grid-template-columns: 1.1fr 0.9fr; /* slightly rebalanced */
+  gap: 22px;
+  align-items: start;
+}
+
+/* Big centered photo row */
+.hero-photo{
+  display:flex;
+  justify-content:center;
+}
+
+/* Below photo: left intro + right "what I do" */
+.hero-content{
+  display:grid;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 28px;
   align-items: start;
 }
 
-/* Optional: align hero-left rhythm */
-.hero-left{ padding-top: 8px; }
+.hero-left{ padding-top: 6px; }
 
+/* Pill */
 .pill{
   display:inline-flex;
   gap:10px;
@@ -317,23 +335,23 @@ h1{
   box-shadow: 0 10px 25px rgba(0,0,0,0.22);
 }
 
-/* RIGHT COLUMN: stack profile + card cleanly, remove empty gaps */
+/* Right column */
 .hero-right{
-  display:flex;              /* changed from grid -> flex for cleaner stacking */
+  display:flex;
   flex-direction: column;
   gap: 20px;
-  align-items: center;       /* centers profile card nicely */
+  align-items: center;
   justify-content: flex-start;
 }
 
 /* Profile card (photo + name) */
 .profile-card{
   width: 100%;
-  max-width: 360px;
+  max-width: 420px;
   text-align:center;
   padding: 18px;
-  border-radius: 20px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.085), rgba(255,255,255,0.04));
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
   position: relative;
@@ -348,22 +366,20 @@ h1{
   opacity:0.9;
 }
 @media (prefers-reduced-motion: no-preference){
-  .profile-card::before{
-    animation: glowMove 8s ease-in-out infinite alternate;
-  }
+  .profile-card::before{ animation: glowMove 8s ease-in-out infinite alternate; }
 }
 
+/* Bigger ring by default (since you want larger image) */
 .profile-ring{
-  width: 190px;
-  height: 190px;
+  width: 260px;
+  height: 260px;
   margin: 0 auto 12px;
   border-radius: 50%;
-  padding: 4px;
+  padding: 5px;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
-  box-shadow: 0 0 30px rgba(124,92,255,0.25);
+  box-shadow: 0 0 34px rgba(124,92,255,0.28), 0 0 22px rgba(25,211,255,0.16);
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
-
 .profile-img{
   width:100%;
   height:100%;
@@ -385,7 +401,6 @@ h1{
   margin-top: 4px;
 }
 
-/* Hover effect */
 @media (hover:hover){
   .profile-card{
     transition: transform .22s var(--ease), border .22s var(--ease), background .22s var(--ease);
@@ -397,7 +412,7 @@ h1{
   }
   .profile-card:hover .profile-ring{
     transform: scale(1.02);
-    box-shadow: 0 0 34px rgba(124,92,255,0.35), 0 0 22px rgba(25,211,255,0.18);
+    box-shadow: 0 0 40px rgba(124,92,255,0.35), 0 0 26px rgba(25,211,255,0.18);
   }
 }
 
@@ -426,10 +441,7 @@ h1{
   0%{ transform: translate3d(-2%, -1%, 0) scale(1); }
   100%{ transform: translate3d(2%, 1%, 0) scale(1.05); }
 }
-.glass-card h3{
-  margin:0 0 10px;
-  font-size: 16px;
-}
+.glass-card h3{ margin:0 0 10px; font-size: 16px; }
 .checklist{
   margin: 0;
   padding-left: 18px;
@@ -456,15 +468,8 @@ h1{
   border-color: rgba(25,211,255,0.35);
   background: rgba(255,255,255,0.05);
 }
-.stat-num{
-  font-size: 18px;
-  font-weight: 800;
-}
-.stat-label{
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 3px;
-}
+.stat-num{ font-size: 18px; font-weight: 800; }
+.stat-label{ font-size: 12px; color: var(--muted); margin-top: 3px; }
 
 /* Sections */
 .section{ padding: 48px 0 8px; }
@@ -647,9 +652,9 @@ input:hover, textarea:hover{
   transform: translateY(0);
 }
 
-/* Slightly different reveal for profile card (extra polish) */
+/* Slightly different reveal for profile card */
 .profile-card.reveal{
-  transform: translateY(20px) scale(0.98);
+  transform: translateY(20px) scale(0.985);
 }
 .profile-card.reveal.show{
   transform: translateY(0) scale(1);
@@ -664,15 +669,15 @@ input:hover, textarea:hover{
 
 /* Responsive */
 @media (max-width: 920px){
-  .hero{ grid-template-columns: 1fr; }
-  .hero-right{ order: -1; } /* bring photo+card above text on mobile */
+  .hero-content{ grid-template-columns: 1fr; }
+  .hero-right{ order: 2; align-items: center; }
   .stats{ grid-template-columns: repeat(3, 1fr); }
   .projects-grid{ grid-template-columns: 1fr; }
   .skills-grid{ grid-template-columns: 1fr 1fr; }
   .grid-2{ grid-template-columns: 1fr; }
 
-  .profile-card{ max-width: 320px; }
-  .profile-ring{ width: 180px; height: 180px; }
+  .profile-card{ max-width: 380px; }
+  .profile-ring{ width: 220px; height: 220px; }
 }
 @media (max-width: 640px){
   .nav-links{
