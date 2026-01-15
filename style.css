@@ -161,9 +161,7 @@ body{
 }
 
 /* =========================
-   HERO (UPDATED FOR V3 HTML)
-   - Top row: Hello left, Photo right
-   - Bottom row: What I do centered + wider
+   HERO (V3)
    ========================= */
 
 .hero.hero--v3{
@@ -173,31 +171,32 @@ body{
   align-items:start;
 }
 
-/* Top row layout */
+/* Top row: intro left, photo right */
 .hero-top{
   display:grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1.15fr 0.85fr; /* slightly more space to photo than before */
   gap: 28px;
   align-items:start;
+  min-height: 360px; /* helps prevent sudden jumps / empty feel */
 }
 
-/* Photo: right aligned + slightly moved up */
+/* Photo wrapper: right aligned + slightly moved up */
 .hero-photo--right{
   display:flex;
   justify-content:flex-end;
   align-items:flex-start;
-  margin-top: -10px; /* moves photo up a bit */
+  margin-top: -12px;
 }
 
-/* Bottom row: center align + fill space */
+/* Bottom row: center the "What I do" card */
 .hero-bottom{
   display:flex;
   justify-content:center;
 }
 
-/* Make the "What I do" card wider so empty space is minimized */
+/* Make the "What I do" card wider */
 .glass-card--wide{
-  width: min(980px, 100%);
+  width: min(1020px, 100%);
 }
 
 /* Pill */
@@ -349,7 +348,7 @@ h1{
 /* Profile card */
 .profile-card{
   width: 100%;
-  max-width: 440px;
+  max-width: 460px;
   text-align:center;
   padding: 18px;
   border-radius: 22px;
@@ -671,7 +670,7 @@ input:hover, textarea:hover{
 
 /* Responsive */
 @media (max-width: 920px){
-  .hero-top{ grid-template-columns: 1fr; }
+  .hero-top{ grid-template-columns: 1fr; min-height: auto; }
   .hero-photo--right{
     justify-content:center;
     margin-top: 0;
