@@ -161,33 +161,44 @@ body{
 }
 
 /* =========================
-   HERO (NEW LAYOUT SUPPORT)
+   HERO (UPDATED FOR V3 HTML)
+   - Top row: Hello left, Photo right
+   - Bottom row: What I do centered + wider
    ========================= */
 
-/* If your HTML uses hero-photo + hero-content, these styles apply.
-   If not, they won't break anything. */
-.hero{
-  padding: 34px 0 14px;
+.hero.hero--v3{
+  padding: 32px 0 18px;
   display:grid;
-  gap: 22px;
-  align-items: start;
+  gap: 18px;
+  align-items:start;
 }
 
-/* Big centered photo row */
-.hero-photo{
+/* Top row layout */
+.hero-top{
+  display:grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 28px;
+  align-items:start;
+}
+
+/* Photo: right aligned + slightly moved up */
+.hero-photo--right{
+  display:flex;
+  justify-content:flex-end;
+  align-items:flex-start;
+  margin-top: -10px; /* moves photo up a bit */
+}
+
+/* Bottom row: center align + fill space */
+.hero-bottom{
   display:flex;
   justify-content:center;
 }
 
-/* Below photo: left intro + right "what I do" */
-.hero-content{
-  display:grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 28px;
-  align-items: start;
+/* Make the "What I do" card wider so empty space is minimized */
+.glass-card--wide{
+  width: min(980px, 100%);
 }
-
-.hero-left{ padding-top: 6px; }
 
 /* Pill */
 .pill{
@@ -335,19 +346,10 @@ h1{
   box-shadow: 0 10px 25px rgba(0,0,0,0.22);
 }
 
-/* Right column */
-.hero-right{
-  display:flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-/* Profile card (photo + name) */
+/* Profile card */
 .profile-card{
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   text-align:center;
   padding: 18px;
   border-radius: 22px;
@@ -369,10 +371,10 @@ h1{
   .profile-card::before{ animation: glowMove 8s ease-in-out infinite alternate; }
 }
 
-/* Bigger ring by default (since you want larger image) */
+/* Larger ring for your photo */
 .profile-ring{
-  width: 260px;
-  height: 260px;
+  width: 280px;
+  height: 280px;
   margin: 0 auto 12px;
   border-radius: 50%;
   padding: 5px;
@@ -640,7 +642,7 @@ input:hover, textarea:hover{
 .muted{ color: var(--muted); }
 .micro{ font-size: 12px; margin-top: 10px; }
 
-/* Reveal animation (IntersectionObserver adds .show) */
+/* Reveal animation */
 .reveal{
   opacity:0;
   transform: translateY(14px);
@@ -669,16 +671,23 @@ input:hover, textarea:hover{
 
 /* Responsive */
 @media (max-width: 920px){
-  .hero-content{ grid-template-columns: 1fr; }
-  .hero-right{ order: 2; align-items: center; }
+  .hero-top{ grid-template-columns: 1fr; }
+  .hero-photo--right{
+    justify-content:center;
+    margin-top: 0;
+  }
+  .hero-bottom{ justify-content:center; }
+  .glass-card--wide{ width: 100%; }
+
   .stats{ grid-template-columns: repeat(3, 1fr); }
   .projects-grid{ grid-template-columns: 1fr; }
   .skills-grid{ grid-template-columns: 1fr 1fr; }
   .grid-2{ grid-template-columns: 1fr; }
 
-  .profile-card{ max-width: 380px; }
-  .profile-ring{ width: 220px; height: 220px; }
+  .profile-card{ max-width: 420px; }
+  .profile-ring{ width: 240px; height: 240px; }
 }
+
 @media (max-width: 640px){
   .nav-links{
     position: absolute;
@@ -695,9 +704,12 @@ input:hover, textarea:hover{
   }
   .nav-links.open{ display:flex; }
   .nav-toggle{ display:block; }
+
   .stats{ grid-template-columns: 1fr; }
   .skills-grid{ grid-template-columns: 1fr; }
   .form-row{ grid-template-columns: 1fr; }
+
+  .profile-ring{ width: 210px; height: 210px; }
 }
 
 /* Accessibility: reduce motion */
