@@ -1,331 +1,304 @@
-/* =============================================
-   CRYPTOPULSE PORTFOLIO — SCRIPT
-   Features: Particles, Parallax, Counters,
-   Scroll reveal, Cursor glow, Nav scroll
-   ============================================= */
-
 'use strict';
 
-// =====================
+// ========================
 // SCROLL PROGRESS BAR
-// =====================
+// ========================
 const scrollBar = document.getElementById('scrollBar');
-window.addEventListener('scroll', () => {
-  const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-  if (scrollBar) scrollBar.style.width = scrolled + '%';
-}, { passive: true });
+function updateScrollBar() {
+  const max = document.body.scrollHeight - window.innerHeight;
+  if (scrollBar && max > 0) scrollBar.style.width = (window.scrollY / max * 100) + '%';
+}
+window.addEventListener('scroll', updateScrollBar, { passive: true });
 
-// =====================
+// ========================
 // NAVBAR SCROLL STATE
-// =====================
+// ========================
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-  if (navbar) {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-  }
+  if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
 
-// =====================
-// MOBILE NAV TOGGLE
-// =====================
+// ========================
+// MOBILE NAV
+// ========================
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
-
 if (navToggle && navLinks) {
-  navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-  [...navLinks.querySelectorAll('a')].forEach(a => {
-    a.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => navLinks.classList.remove('open'))
+  );
 }
 
-// =====================
+// ========================
 // CURSOR GLOW
-// =====================
+// ========================
 const cursorGlow = document.getElementById('cursorGlow');
-let mouseX = 0, mouseY = 0;
-let glowX = 0, glowY = 0;
-
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-}, { passive: true });
-
-function animateCursor() {
-  glowX += (mouseX - glowX) * 0.08;
-  glowY += (mouseY - glowY) * 0.08;
-  if (cursorGlow) {
-    cursorGlow.style.left = glowX + 'px';
-    cursorGlow.style.top = glowY + 'px';
-  }
+let mx = 0, my = 0, gx = 0, gy = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+(function animateCursor() {
+  gx += (mx - gx) * 0.07;
+  gy += (my - gy) * 0.07;
+  if (cursorGlow) { cursorGlow.style.left = gx + 'px'; cursorGlow.style.top = gy + 'px'; }
   requestAnimationFrame(animateCursor);
-}
-animateCursor();
+})();
 
-// =====================
+// ========================
 // PARTICLE CANVAS
-// =====================
-(function initParticles() {
+// ========================
+(function () {
   const canvas = document.getElementById('particleCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  let W, H, particles = [];
+  let W, H, pts = [];
+  const N = window.innerWidth < 768 ? 45 : 85;
 
-  const PARTICLE_COUNT = window.innerWidth < 768 ? 40 : 80;
-  const ACCENT = '108,79,255';
-  const ACCENT2 = '0,212,255';
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
 
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-
-  function Particle() {
-    this.reset();
-  }
-  Particle.prototype.reset = function () {
-    this.x = Math.random() * W;
-    this.y = Math.random() * H;
-    this.r = Math.random() * 1.5 + 0.3;
-    this.vx = (Math.random() - 0.5) * 0.35;
-    this.vy = (Math.random() - 0.5) * 0.35;
-    this.alpha = Math.random() * 0.5 + 0.1;
-    this.color = Math.random() > 0.5 ? ACCENT : ACCENT2;
+  function Pt() { this.reset(); }
+  Pt.prototype.reset = function () {
+    this.x = Math.random() * W; this.y = Math.random() * H;
+    this.r = Math.random() * 1.4 + 0.3;
+    this.vx = (Math.random() - 0.5) * 0.3;
+    this.vy = (Math.random() - 0.5) * 0.3;
+    this.a = Math.random() * 0.45 + 0.08;
+    this.c = Math.random() > 0.5 ? '108,79,255' : '0,212,255';
   };
-  Particle.prototype.update = function () {
-    this.x += this.vx;
-    this.y += this.vy;
-    if (this.x < -10 || this.x > W + 10 || this.y < -10 || this.y > H + 10) {
-      this.reset();
-    }
-  };
-
-  function init() {
-    particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle());
-  }
-
-  function drawConnections() {
-    const maxDist = 140;
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < maxDist) {
-          const alpha = (1 - dist / maxDist) * 0.12;
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(108,79,255,${alpha})`;
-          ctx.lineWidth = 0.5;
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
-        }
-      }
-    }
-  }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
-    drawConnections();
-    particles.forEach(p => {
-      p.update();
+    // Connections
+    for (let i = 0; i < pts.length; i++) {
+      pts[i].x += pts[i].vx; pts[i].y += pts[i].vy;
+      if (pts[i].x < -10 || pts[i].x > W + 10 || pts[i].y < -10 || pts[i].y > H + 10) pts[i].reset();
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 130) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(108,79,255,${(1 - d / 130) * 0.1})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.stroke();
+        }
+      }
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${p.color},${p.alpha})`;
+      ctx.arc(pts[i].x, pts[i].y, pts[i].r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${pts[i].c},${pts[i].a})`;
       ctx.fill();
-    });
+    }
     requestAnimationFrame(draw);
   }
 
   resize();
-  init();
+  pts = Array.from({ length: N }, () => new Pt());
   draw();
-  window.addEventListener('resize', () => { resize(); init(); }, { passive: true });
+  window.addEventListener('resize', () => { resize(); pts.forEach(p => p.reset()); }, { passive: true });
 })();
 
-// =====================
+// ========================
 // SCROLL REVEAL
-// =====================
-const revealEls = document.querySelectorAll('.reveal-up, .reveal-right');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
+// ========================
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal-up, .reveal-right').forEach(el => revealObs.observe(el));
 
-revealEls.forEach(el => revealObserver.observe(el));
-
-// =====================
+// ========================
 // ANIMATED COUNTERS
-// =====================
-function animateCounter(el, target, duration = 1600) {
+// ========================
+function counter(el, target, dur = 1800) {
   let start = null;
-  const step = (timestamp) => {
-    if (!start) start = timestamp;
-    const progress = Math.min((timestamp - start) / duration, 1);
-    // Ease out cubic
-    const eased = 1 - Math.pow(1 - progress, 3);
+  (function step(ts) {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
     el.textContent = Math.round(eased * target);
-    if (progress < 1) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
+    if (p < 1) requestAnimationFrame(step);
+  })(performance.now());
 }
-
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const target = parseInt(el.dataset.target, 10);
-      if (!isNaN(target)) animateCounter(el, target);
-      counterObserver.unobserve(el);
+const cntObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const t = parseInt(e.target.dataset.target, 10);
+      if (!isNaN(t)) counter(e.target, t);
+      cntObs.unobserve(e.target);
     }
   });
 }, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => cntObs.observe(el));
 
-document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+// ========================
+// LIGHTBOX (profile photo)
+// ========================
+const profileImg = document.getElementById('profileImg');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxBackdrop = document.getElementById('lightboxBackdrop');
 
-// =====================
-// PARALLAX ON SCROLL
-// =====================
-let ticking = false;
-
-function updateParallax() {
-  const scrollY = window.scrollY;
-
-  // Hero title subtle parallax
-  const heroContent = document.querySelector('.hero-content');
-  if (heroContent) {
-    heroContent.style.transform = `translateY(${scrollY * 0.12}px)`;
-    heroContent.style.opacity = Math.max(0, 1 - scrollY / 500);
-  }
-
-  // Hero photo opposite parallax
-  const heroPhoto = document.querySelector('.hero-photo-wrap');
-  if (heroPhoto && window.innerWidth > 1024) {
-    heroPhoto.style.transform = `translateX(0) translateY(${scrollY * 0.06}px)`;
-  }
-
-  // Orbs parallax
-  const orbs = document.querySelectorAll('.orb');
-  orbs.forEach((orb, i) => {
-    const speed = [0.08, 0.05, 0.1][i] || 0.06;
-    orb.style.transform = `translateY(${scrollY * speed * (i % 2 === 0 ? 1 : -1)}px)`;
+if (profileImg && lightbox && lightboxImg) {
+  profileImg.style.cursor = 'zoom-in';
+  profileImg.addEventListener('click', () => {
+    lightboxImg.src = profileImg.src;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
   });
-
-  ticking = false;
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 }
 
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    requestAnimationFrame(updateParallax);
-    ticking = true;
+// ========================
+// CINEMATIC HORIZONTAL SCROLL
+// ========================
+(function initCinematicScroll() {
+  const strip = document.getElementById('cinematicStrip');
+  const track = document.getElementById('cinematicTrack');
+  const dots = document.querySelectorAll('.cinema-dot');
+  if (!strip || !track) return;
+
+  const PANELS = 4;
+
+  function update() {
+    const rect = strip.getBoundingClientRect();
+    const stripH = strip.offsetHeight;
+    const viewH = window.innerHeight;
+
+    // How far into the sticky section we've scrolled (0 → stripH - viewH)
+    const scrolled = Math.max(0, -rect.top);
+    const maxScroll = stripH - viewH;
+    const progress = Math.min(Math.max(scrolled / maxScroll, 0), 1);
+
+    // Translate track horizontally
+    const totalShift = (PANELS - 1) * 100; // vw units
+    const shift = progress * totalShift;
+    track.style.transform = `translateX(-${shift}vw)`;
+
+    // Active dot
+    const activePanel = Math.round(progress * (PANELS - 1));
+    dots.forEach((d, i) => d.classList.toggle('active', i === activePanel));
   }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+})();
+
+// ========================
+// HERO PARALLAX ON SCROLL
+// ========================
+let rafTick = false;
+function doParallax() {
+  const sy = window.scrollY;
+  const heroContent = document.querySelector('.hero-content');
+  const heroPhoto = document.querySelector('.hero-photo-wrap');
+  const orbs = document.querySelectorAll('.orb');
+
+  if (heroContent) {
+    const fade = Math.max(0, 1 - sy / 420);
+    heroContent.style.transform = `translateY(${sy * 0.1}px)`;
+    heroContent.style.opacity = fade;
+  }
+  if (heroPhoto && window.innerWidth > 1100) {
+    heroPhoto.style.transform = `translateX(0) translateY(${sy * 0.05}px)`;
+  }
+  orbs.forEach((o, i) => {
+    const spd = [0.07, 0.04, 0.09][i] || 0.05;
+    const dir = i % 2 === 0 ? 1 : -1;
+    o.style.transform = `translateY(${sy * spd * dir}px)`;
+  });
+  rafTick = false;
+}
+window.addEventListener('scroll', () => {
+  if (!rafTick) { requestAnimationFrame(doParallax); rafTick = true; }
 }, { passive: true });
 
-// =====================
-// 3D CARD TILT ON HOVER
-// =====================
-function initCardTilt() {
-  document.querySelectorAll('.project-card, .skill-card, .tl-card, .honor-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const midX = rect.width / 2;
-      const midY = rect.height / 2;
-      const rotX = ((y - midY) / midY) * -6;
-      const rotY = ((x - midX) / midX) * 6;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-      card.style.transition = 'transform 0.5s cubic-bezier(.22,.8,.22,1)';
-      setTimeout(() => { card.style.transition = ''; }, 500);
-    });
+// ========================
+// 3D CARD TILT
+// ========================
+document.querySelectorAll('.project-card, .skill-card, .honor-card, .project-featured').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    const rx = ((y - r.height / 2) / r.height) * -7;
+    const ry = ((x - r.width / 2) / r.width) * 7;
+    card.style.transform = `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
   });
-}
-initCardTilt();
-
-// =====================
-// SCROLL-TRIGGERED SECTION NUMBERS
-// =====================
-function initSectionHighlight() {
-  const sections = document.querySelectorAll('.section, .hero');
-  const navLinks = document.querySelectorAll('.nav-links a');
-
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        navLinks.forEach(a => {
-          a.style.color = '';
-          if (a.getAttribute('href') === `#${id}`) {
-            a.style.color = 'var(--accent2)';
-          }
-        });
-      }
-    });
-  }, { threshold: 0.4 });
-
-  sections.forEach(s => {
-    if (s.id) sectionObserver.observe(s);
+  card.addEventListener('mouseleave', () => {
+    card.style.transition = 'transform 0.5s cubic-bezier(.22,.8,.22,1)';
+    card.style.transform = '';
+    setTimeout(() => { card.style.transition = ''; }, 500);
   });
-}
-initSectionHighlight();
+});
 
-// =====================
-// CONTACT FORM
-// =====================
-const form = document.getElementById('contactForm');
-if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    const to = 'saharshkoli7007@gmail.com';
-    const subject = encodeURIComponent(`Portfolio Contact: ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-
-    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+// ========================
+// ACTIVE NAV HIGHLIGHT
+// ========================
+const sections = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navAs.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + e.target.id) a.classList.add('active');
+      });
+    }
   });
-}
+}, { threshold: 0.35 });
+sections.forEach(s => secObs.observe(s));
 
-// =====================
-// FOOTER YEAR
-// =====================
-const yearEl = document.getElementById('year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-// =====================
-// SMOOTH ANCHOR OFFSET (for sticky nav)
-// =====================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', (e) => {
-    const target = document.querySelector(anchor.getAttribute('href'));
+// ========================
+// SMOOTH ANCHOR SCROLL
+// ========================
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      const offset = 72;
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      const top = target.getBoundingClientRect().top + window.scrollY - 70;
       window.scrollTo({ top, behavior: 'smooth' });
     }
   });
 });
 
-// =====================
-// PAGE LOAD ANIMATION
-// =====================
-document.addEventListener('DOMContentLoaded', () => {
+// ========================
+// CONTACT FORM
+// ========================
+const form = document.getElementById('contactForm');
+if (form) {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const msg = document.getElementById('message').value.trim();
+    const subj = encodeURIComponent(`Portfolio Contact: ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}`);
+    window.location.href = `mailto:saharshkoli7007@gmail.com?subject=${subj}&body=${body}`;
+  });
+}
+
+// ========================
+// FOOTER YEAR
+// ========================
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// ========================
+// PAGE LOAD FADE IN
+// ========================
+window.addEventListener('DOMContentLoaded', () => {
   document.body.style.opacity = '0';
-  document.body.style.transition = 'opacity 0.5s ease';
   requestAnimationFrame(() => {
+    document.body.style.transition = 'opacity 0.6s ease';
     document.body.style.opacity = '1';
   });
 });
