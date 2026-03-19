@@ -256,8 +256,8 @@ footer{padding:28px 0 44px;border-top:1px solid var(--line);margin-top:44px}
 .ru.vis{opacity:1;transform:translateY(0)}
 .rr{opacity:0;transform:translateX(36px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
 .rr.vis{opacity:1;transform:translateX(0)}
-/* Hero elements control their own animation via .si keyframes — must be visible */
-.hero .ru,.hero .rr{opacity:1 !important;transform:none !important}
+/* Hero elements are always visible - their children use .si animation */
+.hero .ru,.hero .rr{opacity:1;transform:none;transition:none}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
 </style>
@@ -635,14 +635,21 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY},{passive:tr
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lb.classList.contains('on'))close()});
 })();
 
-// SCROLL REVEAL (general)
-// Use rootMargin top positive so elements already in view on load also fire
-const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}})},{threshold:0,rootMargin:'200px 0px -20px 0px'});
-document.querySelectorAll('.ru,.rr').forEach(el=>ro.observe(el));
-// Also immediately show anything already visible in viewport on load
-function revealVisible(){document.querySelectorAll('.ru,.rr').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight+100)el.classList.add('vis')})}
+// SCROLL REVEAL — bulletproof version
+function revealVisible(){
+  document.querySelectorAll('.ru,.rr').forEach(el=>{
+    if(el.classList.contains('vis'))return;
+    const r=el.getBoundingClientRect();
+    if(r.top<window.innerHeight*1.05)el.classList.add('vis');
+  });
+}
+// Run on scroll
+window.addEventListener('scroll',revealVisible,{passive:true});
+// Run on load and immediately
 window.addEventListener('load',revealVisible);
 revealVisible();
+// Hard fallback: show everything after 2s in case observer never fires
+setTimeout(()=>document.querySelectorAll('.ru,.rr').forEach(el=>el.classList.add('vis')),2000);
 
 // COUNTERS
 function cnt(el,t){let s=null;(function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/1800,1);el.textContent=Math.round((1-Math.pow(1-p,3))*t);if(p<1)requestAnimationFrame(step)})(performance.now())}
