@@ -150,11 +150,9 @@ nav.scrolled{background:rgba(5,7,15,.92)}
 
 .tl-item{
   position:relative;padding-left:72px;padding-bottom:56px;
-  /* scroll-driven: start hidden, zoom+fade in */
-  opacity:0;transform:translateX(-24px) scale(.97);
-  transition:opacity .7s var(--ease),transform .7s var(--ease);
+  opacity:1;transform:none;
+  transition:transform .5s var(--ease),box-shadow .5s;
 }
-.tl-item.tl-vis{opacity:1;transform:translateX(0) scale(1)}
 .tl-item:last-child{padding-bottom:0}
 
 /* Dot on the line */
@@ -252,12 +250,9 @@ footer{padding:28px 0 44px;border-top:1px solid var(--line);margin-top:44px}
 .flinks a:hover{color:var(--b)}
 
 /* ── REVEAL ── */
-.ru{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0ms);will-change:opacity,transform}
-.ru.vis{opacity:1;transform:translateY(0)}
-.rr{opacity:0;transform:translateX(36px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
-.rr.vis{opacity:1;transform:translateX(0)}
-/* Hero elements are always visible - their children use .si animation */
-.hero .ru,.hero .rr{opacity:1;transform:none;transition:none}
+/* .ru and .rr — always fully visible. JS adds .vis class for scroll tracking only. */
+.ru{opacity:1;transform:none}
+.rr{opacity:1;transform:none}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
 </style>
@@ -328,9 +323,9 @@ footer{padding:28px 0 44px;border-top:1px solid var(--line);margin-top:44px}
       <div class="sr ru" style="--d:520ms">
         <div class="sc"><div><span class="sn" data-target="25">0</span><span class="su">%</span></div><div class="sl">Latency reduced</div></div>
         <div class="sd"></div>
-        <div class="sc"><div><span class="sn" data-target="2">0</span><span class="su">+</span></div><div class="sl">Live AWS dashboards</div></div>
+        <div class="sc"><div><span class="sn" data-target="2">1</span><span class="su">+</span></div><div class="sl">Live AWS dashboards</div></div>
         <div class="sd"></div>
-        <div class="sc"><div><span class="sn" data-target="800">0</span><span class="su">+</span></div><div class="sl">Records managed</div></div>
+        <div class="sc"><div><span class="sn" data-target="800+">0</span><span class="su">+</span></div><div class="sl">Records managed</div></div>
         <div class="sd"></div>
         <div class="sc"><div><span class="sn" data-target="95">0</span><span class="su">%</span></div><div class="sl">Issue resolution rate</div></div>
       </div>
@@ -635,21 +630,18 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY},{passive:tr
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lb.classList.contains('on'))close()});
 })();
 
-// SCROLL REVEAL — bulletproof version
+// SCROLL REVEAL — content is always visible (.ru opacity:1 in CSS)
+// .vis class is added for any JS that needs to know element is in view
 function revealVisible(){
   document.querySelectorAll('.ru,.rr').forEach(el=>{
-    if(el.classList.contains('vis'))return;
-    const r=el.getBoundingClientRect();
-    if(r.top<window.innerHeight*1.05)el.classList.add('vis');
+    if(!el.classList.contains('vis')){
+      const r=el.getBoundingClientRect();
+      if(r.top<window.innerHeight*1.1)el.classList.add('vis');
+    }
   });
 }
-// Run on scroll
 window.addEventListener('scroll',revealVisible,{passive:true});
-// Run on load and immediately
-window.addEventListener('load',revealVisible);
 revealVisible();
-// Hard fallback: show everything after 2s in case observer never fires
-setTimeout(()=>document.querySelectorAll('.ru,.rr').forEach(el=>el.classList.add('vis')),2000);
 
 // COUNTERS
 function cnt(el,t){let s=null;(function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/1800,1);el.textContent=Math.round((1-Math.pow(1-p,3))*t);if(p<1)requestAnimationFrame(step)})(performance.now())}
@@ -663,34 +655,23 @@ document.querySelectorAll('[data-target]').forEach(el=>co.observe(el));
   const items=document.querySelectorAll('[data-tl]');
   if(!items.length)return;
 
-  // IntersectionObserver for the "appear" animation
-  const tlObs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      e.target.classList.toggle('tl-vis',e.isIntersecting);
-    });
-  },{threshold:0.18,rootMargin:'0px 0px -60px 0px'});
+  // Add tl-vis immediately to all items so they're always visible
+  items.forEach(el=>el.classList.add('tl-vis'));
 
-  items.forEach(el=>tlObs.observe(el));
-
-  // Scroll-driven scale: active item = full scale, items above = slightly shrunken
+  // Subtle scroll-driven scale effect only — no hiding
   function updateTlScale(){
     const midY=window.innerHeight/2;
     items.forEach(item=>{
       const rect=item.getBoundingClientRect();
       const center=rect.top+rect.height/2;
       const dist=Math.abs(center-midY);
-      const maxDist=window.innerHeight*.7;
-      const scale=Math.max(.94,1-dist/maxDist*.06);
-      const opacity=Math.max(.55,1-dist/maxDist*.45);
-      item.style.setProperty('--ts',scale);
-      item.style.setProperty('--to',opacity);
+      const maxDist=window.innerHeight*.75;
+      // Scale between 0.96 and 1 — very subtle
+      const scale=Math.max(.96,1-dist/maxDist*.04);
+      item.querySelector('.tl-card').style.transform=`scale(${scale})`;
+      item.querySelector('.tl-card').style.opacity=Math.max(.7,1-dist/maxDist*.3);
     });
   }
-
-  // Apply transform via CSS custom properties
-  const style=document.createElement('style');
-  style.textContent='.tl-item.tl-vis{transform:translateX(0) scale(var(--ts,1)) !important;opacity:var(--to,1) !important}';
-  document.head.appendChild(style);
 
   window.addEventListener('scroll',updateTlScale,{passive:true});
   window.addEventListener('resize',updateTlScale,{passive:true});
