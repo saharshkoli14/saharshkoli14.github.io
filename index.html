@@ -256,6 +256,8 @@ footer{padding:28px 0 44px;border-top:1px solid var(--line);margin-top:44px}
 .ru.vis{opacity:1;transform:translateY(0)}
 .rr{opacity:0;transform:translateX(36px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
 .rr.vis{opacity:1;transform:translateX(0)}
+/* Hero elements control their own animation via .si keyframes — must be visible */
+.hero .ru,.hero .rr{opacity:1 !important;transform:none !important}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
 </style>
@@ -634,8 +636,13 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY},{passive:tr
 })();
 
 // SCROLL REVEAL (general)
-const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -36px 0px'});
+// Use rootMargin top positive so elements already in view on load also fire
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}})},{threshold:0,rootMargin:'200px 0px -20px 0px'});
 document.querySelectorAll('.ru,.rr').forEach(el=>ro.observe(el));
+// Also immediately show anything already visible in viewport on load
+function revealVisible(){document.querySelectorAll('.ru,.rr').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight+100)el.classList.add('vis')})}
+window.addEventListener('load',revealVisible);
+revealVisible();
 
 // COUNTERS
 function cnt(el,t){let s=null;(function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/1800,1);el.textContent=Math.round((1-Math.pow(1-p,3))*t);if(p<1)requestAnimationFrame(step)})(performance.now())}
