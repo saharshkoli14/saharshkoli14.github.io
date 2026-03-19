@@ -3,31 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saharsh Kamod Koli | Data Analytics & Engineering</title>
+  <title>Saharsh Kamod Koli | Data Analytics Engineer</title>
   <meta name="description" content="Data Analytics Engineer • Co-Lead Analytics • Applied ML & Data Systems" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./style.css" />
 </head>
-
 <body>
-  <!-- Canvas for particle background -->
   <canvas id="particleCanvas"></canvas>
-
-  <!-- Cursor glow -->
   <div class="cursor-glow" id="cursorGlow"></div>
-
-  <!-- Background layers -->
   <div class="bg-gradient"></div>
   <div class="bg-grid"></div>
-
-  <!-- Scroll progress bar -->
   <div class="scroll-bar" id="scrollBar"></div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lightboxClose">×</button>
+      <img src="" alt="Profile" class="lightbox-img" id="lightboxImg" />
+      <p class="lightbox-caption">Saharsh Kamod Koli · Co-Lead Analytics</p>
+    </div>
+  </div>
 
   <!-- Navbar -->
   <header class="nav" id="navbar">
-    <div class="container nav-inner">
+    <div class="nav-inner">
       <a class="logo" href="#top">
         <span class="logo-mark">SK</span>
         <span class="logo-text">Saharsh<span class="logo-dot-inline">.</span></span>
@@ -49,86 +51,90 @@
   <!-- HERO -->
   <section class="hero" id="top">
     <div class="hero-scene">
-      <!-- Floating 3D orbs -->
       <div class="orb orb-1"></div>
       <div class="orb orb-2"></div>
       <div class="orb orb-3"></div>
     </div>
 
-    <div class="container hero-content">
-      <div class="hero-eyebrow reveal-up" style="--d:0ms">
-        <span class="status-dot"></span>
-        Available for opportunities
-      </div>
-
-      <h1 class="hero-title reveal-up" style="--d:100ms">
-        <span class="line-wrap"><span class="hero-line">Turning Data</span></span>
-        <span class="line-wrap"><span class="hero-line hero-line--accent">Into Decisions</span></span>
-      </h1>
-
-      <p class="hero-sub reveal-up" style="--d:200ms">
-        Data Analytics Engineer & Co-Lead Analytics • I build end-to-end data
-        solutions—pipelines, live dashboards, ML systems—focused on clarity, scalability, and real-world impact.
-      </p>
-
-      <div class="hero-cta reveal-up" style="--d:300ms">
-        <a class="btn primary" href="#projects">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="5 12 12 5 19 12"/><polyline points="5 12 12 19 19 12" opacity=".35"/></svg>
-          View Projects
-        </a>
-        <a class="btn ghost" href="#contact">Contact Me</a>
-        <a href="assets/Saharsh_Kamod_Koli_Resume.pdf.pdf" class="btn outline" download target="_blank" rel="noreferrer">
-          ↓ Resume
-        </a>
-      </div>
-
-      <div class="hero-chips reveal-up" style="--d:400ms">
-        <a class="chip" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-        <a class="chip" href="https://github.com/saharshkoli14" target="_blank" rel="noreferrer">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-          GitHub
-        </a>
-        <a class="chip" href="mailto:saharshkoli7007@gmail.com">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
-          Email
-        </a>
-      </div>
-
-      <!-- Stats ribbon -->
-      <div class="stats-ribbon reveal-up" style="--d:500ms">
-        <div class="stat-item">
-          <span class="stat-num" data-target="25">0</span><span class="stat-num">%</span>
-          <span class="stat-label">Latency reduced</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-num" data-target="2">0</span><span class="stat-num">+</span>
-          <span class="stat-label">Live AWS dashboards</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-num" data-target="800">0</span><span class="stat-num">+</span>
-          <span class="stat-label">Records managed</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-num" data-target="100">0</span><span class="stat-num">+</span>
-          <span class="stat-label">Queries handled</span>
-        </div>
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <span>Data Engineering</span><span class="mdot">·</span>
+        <span>AWS Pipelines</span><span class="mdot">·</span>
+        <span>ML Systems</span><span class="mdot">·</span>
+        <span>Live Dashboards</span><span class="mdot">·</span>
+        <span>NLP &amp; LLMs</span><span class="mdot">·</span>
+        <span>Analytics Leadership</span><span class="mdot">·</span>
+        <span>Data Engineering</span><span class="mdot">·</span>
+        <span>AWS Pipelines</span><span class="mdot">·</span>
+        <span>ML Systems</span><span class="mdot">·</span>
+        <span>Live Dashboards</span><span class="mdot">·</span>
+        <span>NLP &amp; LLMs</span><span class="mdot">·</span>
+        <span>Analytics Leadership</span><span class="mdot">·</span>
       </div>
     </div>
 
-    <!-- Hero photo -->
-    <div class="hero-photo-wrap reveal-right" style="--d:150ms">
-      <div class="photo-frame">
-        <div class="photo-ring"></div>
-        <img src="assets/profile.jpg" alt="Saharsh Kamod Koli" class="photo-img" />
-        <div class="photo-badge">
-          <span class="badge-dot"></span>
-          Co-Lead Analytics
+    <div class="hero-body">
+      <div class="hero-content">
+        <div class="hero-eyebrow reveal-up" style="--d:0ms">
+          <span class="status-dot"></span>
+          Available for opportunities
+        </div>
+
+        <h1 class="hero-title reveal-up" style="--d:80ms">
+          <span class="line-wrap"><span class="hero-line">Raw Data.</span></span>
+          <span class="line-wrap"><span class="hero-line">Sharp Insights.</span></span>
+          <span class="line-wrap"><span class="hero-line hero-line--accent">Real Impact.</span></span>
+        </h1>
+
+        <p class="hero-sub reveal-up" style="--d:200ms">
+          Data Analytics Engineer &amp; Co-Lead Analytics — I architect AWS-native pipelines,
+          live operational dashboards, and ML systems that turn noise into decisions.
+        </p>
+
+        <div class="hero-cta reveal-up" style="--d:300ms">
+          <a class="btn primary" href="#projects">View My Work</a>
+          <a class="btn ghost" href="#contact">Let's Talk</a>
+          <a href="assets/Saharsh_Kamod_Koli_Resume.pdf.pdf" class="btn outline" download target="_blank" rel="noreferrer">↓ Resume</a>
+        </div>
+
+        <div class="hero-chips reveal-up" style="--d:380ms">
+          <a class="chip" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="chip" href="https://github.com/saharshkoli14" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="chip" href="mailto:saharshkoli7007@gmail.com">Email</a>
+        </div>
+
+        <div class="stats-ribbon reveal-up" style="--d:460ms">
+          <div class="stat-item">
+            <div class="stat-val"><span class="stat-num" data-target="25">0</span><span class="stat-unit">%</span></div>
+            <div class="stat-label">Latency reduced</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-val"><span class="stat-num" data-target="2">0</span><span class="stat-unit">+</span></div>
+            <div class="stat-label">Live AWS dashboards</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-val"><span class="stat-num" data-target="800">0</span><span class="stat-unit">+</span></div>
+            <div class="stat-label">Records managed</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-val"><span class="stat-num" data-target="95">0</span><span class="stat-unit">%</span></div>
+            <div class="stat-label">Issue resolution rate</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-photo-wrap reveal-right" style="--d:120ms">
+        <div class="photo-frame">
+          <div class="photo-ring"></div>
+          <img src="assets/profile.jpg" alt="Saharsh Kamod Koli"
+               class="photo-img" id="profileImg" />
+          <div class="photo-badge">
+            <span class="badge-dot"></span>
+            Co-Lead Analytics
+          </div>
         </div>
       </div>
     </div>
@@ -139,291 +145,317 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <div class="container">
-      <div class="section-label reveal-up">About</div>
-      <h2 class="section-title reveal-up">Building systems that <span class="grad-text">actually work</span></h2>
+  <!-- CINEMATIC HORIZONTAL SCROLL SECTION -->
+  <section class="cinematic-strip" id="cinematicStrip">
+    <div class="cinema-sticky" id="cinemaStickyWrap">
+      <div class="cinema-track" id="cinematicTrack">
 
-      <div class="about-grid">
-        <div class="about-text reveal-up">
-          <p>
-            Python-focused data engineer and analytics practitioner with experience building
-            end-to-end pipelines, live operational dashboards, and ML-powered systems.
-            Currently serving as <strong>Co-Lead of the Analytics team</strong> at Yes Tech Corp,
-            leading analytics architecture decisions and driving data strategy across the organization.
-          </p>
-          <p>
-            I focus on measurable outcomes: clean data, reliable pipelines, and dashboards
-            that stakeholders actually trust. From AWS-native data systems to crypto ML models—I
-            ship things that run in production.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Python</span>
-            <span class="tag">SQL</span>
-            <span class="tag">AWS</span>
-            <span class="tag">GCP</span>
-            <span class="tag">Tableau</span>
-            <span class="tag">NLP/LLMs</span>
-            <span class="tag">Next.js</span>
-          </div>
-        </div>
-
-        <div class="edu-card reveal-up" style="--d:100ms">
-          <h3>Education</h3>
-          <div class="edu-item">
-            <div class="edu-icon">🎓</div>
-            <div>
-              <div class="edu-title">George Mason University</div>
-              <div class="edu-sub">M.S. Data Analytics Engineering • GPA ~3.9/4</div>
-              <div class="edu-meta">Fairfax, VA • 2024–2025</div>
+        <div class="cinema-panel" data-panel="0">
+          <div class="panel-bg panel-bg--1"></div>
+          <div class="panel-body">
+            <div class="panel-content">
+              <div class="panel-label">01 — About</div>
+              <h2 class="panel-title">Building systems<br>that <span class="grad-text">actually work</span></h2>
+              <p class="panel-text">
+                Python-focused data engineer with 2+ years building end-to-end pipelines, live
+                operational dashboards, and ML-powered systems. Currently
+                <strong>Co-Lead of the Analytics Team</strong> at Yes Tech Corp — driving data
+                strategy and architecture decisions across the org.
+              </p>
             </div>
-          </div>
-          <div class="edu-item">
-            <div class="edu-icon">🎓</div>
-            <div>
-              <div class="edu-title">University of Mumbai</div>
-              <div class="edu-sub">B.E. Electronics & Telecommunication • GPA ~3.46/4</div>
-              <div class="edu-meta">2019–2023</div>
+            <div class="panel-side">
+              <div class="panel-edu-card">
+                <div class="panel-edu-item">
+                  <span class="panel-edu-icon">🎓</span>
+                  <div>
+                    <div class="panel-edu-title">George Mason University</div>
+                    <div class="panel-edu-sub">M.S. Data Analytics Engineering · GPA 3.90/4</div>
+                    <div class="panel-edu-meta">Fairfax, VA · 2024–2025</div>
+                  </div>
+                </div>
+                <div class="panel-edu-item">
+                  <span class="panel-edu-icon">🎓</span>
+                  <div>
+                    <div class="panel-edu-title">University of Mumbai</div>
+                    <div class="panel-edu-sub">B.E. Electronics &amp; Telecom · GPA 3.46/4</div>
+                    <div class="panel-edu-meta">Mumbai, India · 2019–2023</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="cinema-panel" data-panel="1">
+          <div class="panel-bg panel-bg--2"></div>
+          <div class="panel-body">
+            <div class="panel-content">
+              <div class="panel-label">02 — Experience</div>
+              <h2 class="panel-title">Yes Tech Corp</h2>
+              <div class="panel-role">Co-Lead, Data Analytics Engineer
+                <span class="panel-date">Jul 2025 – Present · Remote, NY</span>
+              </div>
+              <ul class="panel-list">
+                <li>Co-lead analytics strategy reducing reporting latency by <strong>~25%</strong> through automated AWS pipelines.</li>
+                <li>Deployed <strong>2 live dashboards</strong> on AWS (DynamoDB + Athena): developer telemetry &amp; executive KPI views.</li>
+                <li>Engineered ETL workflows automating cleaning of <strong>millions of user events</strong>, cutting manual processing by 40%.</li>
+                <li>Translated business requirements into scalable data models; identified <strong>5+ optimization opportunities</strong>.</li>
+              </ul>
+              <div class="panel-tags">
+                <span class="tag">AWS</span><span class="tag">DynamoDB</span><span class="tag">Athena</span><span class="tag">Python</span><span class="tag">ETL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cinema-panel" data-panel="2">
+          <div class="panel-bg panel-bg--3"></div>
+          <div class="panel-body">
+            <div class="panel-content">
+              <div class="panel-label">03 — Experience</div>
+              <h2 class="panel-title">Siemens EA Factory</h2>
+              <div class="panel-role">Data &amp; Reporting Intern
+                <span class="panel-date">Jun 2022 – Jul 2022 · Goa, India</span>
+              </div>
+              <ul class="panel-list">
+                <li>Maintained reporting database managing <strong>800+ training records</strong> in Excel with VBA and SQL.</li>
+                <li>Automated data entry cutting manual reporting effort by <strong>30%</strong> and improving data accuracy.</li>
+                <li>Built dashboards used by <strong>5+ managers</strong> for performance evaluation and operational decision-making.</li>
+              </ul>
+              <div class="panel-tags">
+                <span class="tag">SQL</span><span class="tag">Excel VBA</span><span class="tag">Data Modeling</span><span class="tag">Dashboards</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cinema-panel" data-panel="3">
+          <div class="panel-bg panel-bg--4"></div>
+          <div class="panel-body">
+            <div class="panel-content">
+              <div class="panel-label">04 — Experience</div>
+              <h2 class="panel-title">Numerouno Education</h2>
+              <div class="panel-role">Business &amp; Data Support Intern
+                <span class="panel-date">Nov 2022 – Jan 2023 · Mumbai, India</span>
+              </div>
+              <ul class="panel-list">
+                <li>Validated customer data for <strong>50+ clients weekly</strong>, achieving <strong>95% issue resolution in 24h</strong>.</li>
+                <li>Built weekly performance reports in Power BI and ggplot2, communicating trends to internal stakeholders.</li>
+                <li>Streamlined cross-functional decision-making by translating raw data into actionable weekly reports.</li>
+              </ul>
+              <div class="panel-tags">
+                <span class="tag">Power BI</span><span class="tag">ggplot2</span><span class="tag">Validation</span><span class="tag">Reporting</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
-  </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience" class="section">
-    <div class="container">
-      <div class="section-label reveal-up">Experience</div>
-      <h2 class="section-title reveal-up">Where I've <span class="grad-text">made impact</span></h2>
-
-      <div class="timeline">
-
-        <div class="tl-item reveal-up">
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-header">
-              <div>
-                <h3 class="tl-role">Co-Lead, Analytics Team — Yes Tech Corp</h3>
-                <span class="tl-company">Yes Tech Corp</span>
-              </div>
-              <span class="tl-date">07/2025 – Present</span>
-            </div>
-            <ul>
-              <li>Co-lead analytics strategy and architecture decisions for a growing analytics team, driving cross-functional data initiatives that reduced reporting latency by <strong>~25%</strong> through automated AWS-based pipelines.</li>
-              <li>Architected and deployed <strong>2 live operational dashboards</strong> directly connected to AWS (DynamoDB + Athena): one empowering the developer team with real-time system telemetry and one delivering executive-level KPIs for stakeholders — enabling data-driven product decisions at velocity.</li>
-              <li>Engineered Python-based ETL workflows automating data cleaning and aggregation across <strong>millions of user interaction events</strong>, reducing manual processing time by over 40%.</li>
-              <li>Translated ambiguous product requirements into scalable data models and metric definitions, aligning analytics output with business objectives across product and engineering teams.</li>
-            </ul>
-            <div class="tl-tags">
-              <span class="tag">AWS DynamoDB</span><span class="tag">Athena</span><span class="tag">Python</span><span class="tag">Live Dashboards</span><span class="tag">Analytics Leadership</span>
-            </div>
-          </div>
+      <div class="cinema-nav">
+        <div class="cinema-dots" id="cinemaDots">
+          <span class="cinema-dot active" data-dot="0"></span>
+          <span class="cinema-dot" data-dot="1"></span>
+          <span class="cinema-dot" data-dot="2"></span>
+          <span class="cinema-dot" data-dot="3"></span>
         </div>
-
-        <div class="tl-item reveal-up" style="--d:100ms">
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-header">
-              <div>
-                <h3 class="tl-role">Data Analytics Intern — Siemens</h3>
-                <span class="tl-company">Siemens</span>
-              </div>
-              <span class="tl-date">2022–2023</span>
-            </div>
-            <ul>
-              <li>Managed and cleaned <strong>800+ equipment records</strong> across multiple data systems, improving data quality and operational reporting accuracy.</li>
-              <li>Built automated reporting pipelines reducing manual data preparation time by <strong>30%</strong> for the analytics team.</li>
-              <li>Collaborated cross-functionally to translate business KPIs into reliable, recurring report formats used by 3 internal teams.</li>
-            </ul>
-            <div class="tl-tags">
-              <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Data Cleaning</span><span class="tag">Reporting Automation</span>
-            </div>
-          </div>
+        <div class="cinema-hint">
+          <span>Scroll to advance</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
-
       </div>
     </div>
   </section>
 
   <!-- PROJECTS -->
-  <section id="projects" class="section">
-    <div class="container">
-      <div class="section-label reveal-up">Projects</div>
-      <h2 class="section-title reveal-up">Things I've <span class="grad-text">shipped</span></h2>
+  <section id="projects" class="section" id="about">
+    <div class="full-container">
+      <div class="section-label reveal-up">My Creations</div>
+      <h2 class="section-title reveal-up">Work I'm <span class="grad-text">proud of</span></h2>
 
+      <!-- Featured CryptoPulse -->
+      <a class="project-featured reveal-up"
+         href="https://github.com/saharshkoli14/cryptopulse"
+         target="_blank" rel="noreferrer">
+        <div class="project-featured-glow"></div>
+        <div class="pf-left">
+          <div class="project-header">
+            <span class="project-badge project-badge--live"><span class="live-dot"></span>Live</span>
+            <span class="project-badge">Python · Next.js · ML · PostgreSQL</span>
+          </div>
+          <h3 class="pf-title">CryptoPulse</h3>
+          <p class="project-desc">
+            Full-stack real-time crypto market dashboard ingesting live tick data via WebSocket,
+            storing 1-minute OHLCV candles in Supabase PostgreSQL, and serving ML-powered price
+            direction signals through a Next.js 15 App Router dashboard on Vercel.
+            Features live market index, volume charts, and plain-language prediction signals.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Next.js 15</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span>
+            <span class="tag">scikit-learn</span><span class="tag">Recharts</span><span class="tag">Vercel</span>
+          </div>
+          <div class="pf-links">
+            <span class="project-cta">View on GitHub →</span>
+            <a href="https://crytopulse-saharshkoli14s-projects.vercel.app"
+               class="project-demo" target="_blank" rel="noreferrer"
+               onclick="event.stopPropagation()">Live Demo ↗</a>
+          </div>
+        </div>
+        <div class="pf-right">
+          <div class="pf-visual">
+            <div class="pv-bars">
+              <div class="pv-bar" style="--h:62%"></div>
+              <div class="pv-bar" style="--h:80%"></div>
+              <div class="pv-bar" style="--h:48%"></div>
+              <div class="pv-bar" style="--h:91%"></div>
+              <div class="pv-bar" style="--h:70%"></div>
+              <div class="pv-bar" style="--h:56%"></div>
+              <div class="pv-bar" style="--h:84%"></div>
+              <div class="pv-bar" style="--h:40%"></div>
+            </div>
+            <div class="pv-line-path">
+              <svg viewBox="0 0 200 80" preserveAspectRatio="none">
+                <polyline points="0,70 25,50 50,60 75,30 100,45 125,20 150,35 175,15 200,25"
+                  fill="none" stroke="url(#lineGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#6c4fff"/>
+                    <stop offset="100%" stop-color="#00d4ff"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="pv-label">Live Market Data</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Other projects grid -->
       <div class="projects-grid">
-
-        <!-- CryptoPulse — FEATURED -->
-        <a class="project-card project-card--featured reveal-up"
-           href="https://github.com/saharshkoli14/cryptopulse"
-           target="_blank" rel="noreferrer">
-          <div class="project-featured-bg"></div>
+        <a class="project-card reveal-up" style="--d:0ms"
+           href="https://github.com/varun-TR/ATC-Voice" target="_blank" rel="noreferrer">
           <div class="project-inner">
             <div class="project-header">
-              <span class="project-badge project-badge--live">
-                <span class="live-dot"></span> Live
-              </span>
-              <span class="project-badge">Python • Next.js • ML • PostgreSQL</span>
+              <span class="project-badge">Audio · NLP · Safety</span>
             </div>
-            <h3 class="project-title">CryptoPulse</h3>
+            <h3 class="project-title">ATC Voice Analytics Dashboard</h3>
             <p class="project-desc">
-              Full-stack real-time crypto market dashboard ingesting live tick data via WebSocket,
-              storing 1-minute OHLCV candles in Supabase PostgreSQL, and serving ML-powered price
-              direction signals through a Next.js 15 App Router dashboard deployed on Vercel.
-              Features live market index, volume charts, and plain-language prediction signals.
+              Python pipeline using ATLAS algorithm to process 100+ ATC audio samples,
+              generating structured datasets for LLM/NLP-driven safety analysis. Built in Agile
+              sprints with a cross-functional team of 5+.
             </p>
             <div class="project-tags">
-              <span class="tag">Next.js 15</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span>
-              <span class="tag">scikit-learn</span><span class="tag">Recharts</span><span class="tag">Vercel</span>
-            </div>
-            <div class="project-links">
-              <span class="project-cta">View on GitHub →</span>
-              <a href="https://crytopulse-saharshkoli14s-projects.vercel.app" target="_blank" rel="noreferrer"
-                 class="project-demo" onclick="e=>e.stopPropagation()">
-                Live Demo ↗
-              </a>
-            </div>
-          </div>
-        </a>
-
-        <!-- Cybersecurity EDA -->
-        <a class="project-card reveal-up" style="--d:50ms"
-           href="https://github.com/saharshkoli14/cybersecurity-threat-vulnerability-eda"
-           target="_blank" rel="noreferrer">
-          <div class="project-inner">
-            <div class="project-header">
-              <span class="project-badge">R • EDA • Risk Insights</span>
-            </div>
-            <h3 class="project-title">Cybersecurity Threat & Vulnerability Analytics</h3>
-            <p class="project-desc">
-              Exploratory analysis of vulnerability and exploitability signals to support
-              prioritization, trend discovery, and risk-aware decision-making.
-            </p>
-            <div class="project-tags">
-              <span class="tag">tidyverse</span><span class="tag">ggplot2</span><span class="tag">EDA</span>
+              <span class="tag">Python</span><span class="tag">NLP</span><span class="tag">LLMs</span><span class="tag">Audio</span>
             </div>
             <div class="project-cta">Open Repo →</div>
           </div>
         </a>
 
-        <!-- ATC Voice -->
-        <a class="project-card reveal-up" style="--d:100ms"
-           href="https://github.com/varun-TR/ATC-Voice"
-           target="_blank" rel="noreferrer">
+        <a class="project-card reveal-up" style="--d:60ms"
+           href="https://github.com/Rushikesh-S-Ware/NLP---SQL-Transformer-" target="_blank" rel="noreferrer">
           <div class="project-inner">
             <div class="project-header">
-              <span class="project-badge">Audio → Data • NLP • Safety</span>
+              <span class="project-badge">NLP · Text-to-SQL · Finance</span>
             </div>
-            <h3 class="project-title">ATC Voice Analytics</h3>
+            <h3 class="project-title">Financial DB Querying (Fin-DBQA)</h3>
             <p class="project-desc">
-              Pipeline for processing Air Traffic Control voice data and extracting
-              structured insights for analytics and decision support.
+              Financial querying system using spaCy for entity extraction, achieving
+              <strong>79% accuracy</strong> across 100+ financial queries using
+              Hugging Face Transformers for LLM-based semantic reasoning.
             </p>
             <div class="project-tags">
-              <span class="tag">Python</span><span class="tag">NLP</span><span class="tag">Data Pipelines</span>
+              <span class="tag">Python</span><span class="tag">spaCy</span><span class="tag">Transformers</span><span class="tag">SQL</span>
             </div>
             <div class="project-cta">Open Repo →</div>
           </div>
         </a>
 
-        <!-- NLP-SQL -->
-        <a class="project-card reveal-up" style="--d:150ms"
-           href="https://github.com/Rushikesh-S-Ware/NLP---SQL-Transformer-"
-           target="_blank" rel="noreferrer">
+        <a class="project-card reveal-up" style="--d:120ms"
+           href="https://github.com/saharshkoli14/Bridge-Condition-Analysis-Predictive-Maintenance" target="_blank" rel="noreferrer">
           <div class="project-inner">
             <div class="project-header">
-              <span class="project-badge">NLP • Gradio • Text-to-SQL</span>
-            </div>
-            <h3 class="project-title">NLP-to-SQL Chatbot</h3>
-            <p class="project-desc">
-              Gradio-based chatbot converting natural language questions into SQL queries
-              over uploaded CSV files — enabling fast self-serve analytics via conversation.
-            </p>
-            <div class="project-tags">
-              <span class="tag">Python</span><span class="tag">Transformers</span><span class="tag">SQL</span>
-            </div>
-            <div class="project-cta">Open Repo →</div>
-          </div>
-        </a>
-
-        <!-- Bridge Condition -->
-        <a class="project-card reveal-up" style="--d:200ms"
-           href="https://github.com/saharshkoli14/Bridge-Condition-Analysis-Predictive-Maintenance"
-           target="_blank" rel="noreferrer">
-          <div class="project-inner">
-            <div class="project-header">
-              <span class="project-badge">Predictive Modeling • Analytics</span>
+              <span class="project-badge">Predictive Modeling · Infrastructure</span>
             </div>
             <h3 class="project-title">Bridge Condition Analysis</h3>
             <p class="project-desc">
-              Data analysis and predictive modeling to understand key determinants of
-              bridge condition and support infrastructure maintenance planning.
+              Analyzed 10k+ infrastructure records; regression and statistical correlation of
+              weather, budget, and structural features with maintenance outcomes.
+              Paper submitted to <strong>FHWA InfoBridge</strong>.
             </p>
             <div class="project-tags">
-              <span class="tag">Python</span><span class="tag">ML</span><span class="tag">EDA</span>
+              <span class="tag">Python</span><span class="tag">ML</span><span class="tag">Regression</span><span class="tag">EDA</span>
             </div>
             <div class="project-cta">Open Repo →</div>
           </div>
         </a>
 
+        <a class="project-card reveal-up" style="--d:180ms"
+           href="https://github.com/saharshkoli14/cybersecurity-threat-vulnerability-eda" target="_blank" rel="noreferrer">
+          <div class="project-inner">
+            <div class="project-header">
+              <span class="project-badge">R · EDA · Risk Analytics</span>
+            </div>
+            <h3 class="project-title">Cybersecurity Threat &amp; Vulnerability EDA</h3>
+            <p class="project-desc">
+              EDA on 1,000+ CVE-style records using R (tidyverse, ggplot2).
+              Correlation heatmaps and time-series trends (2015–present) for risk
+              prioritization and vulnerability assessment.
+            </p>
+            <div class="project-tags">
+              <span class="tag">R</span><span class="tag">tidyverse</span><span class="tag">ggplot2</span><span class="tag">EDA</span>
+            </div>
+            <div class="project-cta">Open Repo →</div>
+          </div>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- SKILLS -->
   <section id="skills" class="section">
-    <div class="container">
+    <div class="full-container">
       <div class="section-label reveal-up">Skills</div>
       <h2 class="section-title reveal-up">My <span class="grad-text">toolkit</span></h2>
-
       <div class="skills-grid">
         <div class="skill-card reveal-up" style="--d:0ms">
-          <div class="skill-icon">⌨️</div>
-          <h3>Programming</h3>
+          <div class="skill-icon">⌨️</div><h3>Programming</h3>
           <div class="tag-row">
             <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">R</span><span class="tag">TypeScript</span>
           </div>
         </div>
-        <div class="skill-card reveal-up" style="--d:60ms">
-          <div class="skill-icon">🔧</div>
-          <h3>Data Engineering</h3>
+        <div class="skill-card reveal-up" style="--d:50ms">
+          <div class="skill-icon">🔧</div><h3>Data Engineering</h3>
           <div class="tag-row">
-            <span class="tag">ETL/ELT</span><span class="tag">Data Cleaning</span><span class="tag">Kafka</span>
-            <span class="tag">Spark</span><span class="tag">BigQuery</span>
+            <span class="tag">ETL/ELT</span><span class="tag">Hadoop</span><span class="tag">Spark</span>
+            <span class="tag">Kafka</span><span class="tag">Data Lake</span>
           </div>
         </div>
-        <div class="skill-card reveal-up" style="--d:120ms">
-          <div class="skill-icon">☁️</div>
-          <h3>Cloud</h3>
+        <div class="skill-card reveal-up" style="--d:100ms">
+          <div class="skill-icon">☁️</div><h3>Cloud Platforms</h3>
           <div class="tag-row">
             <span class="tag">AWS S3</span><span class="tag">Athena</span><span class="tag">DynamoDB</span>
-            <span class="tag">Lambda</span><span class="tag">GCP BigQuery</span>
+            <span class="tag">Lambda</span><span class="tag">GCP BigQuery</span><span class="tag">Azure</span>
           </div>
         </div>
-        <div class="skill-card reveal-up" style="--d:180ms">
-          <div class="skill-icon">📊</div>
-          <h3>Visualization</h3>
+        <div class="skill-card reveal-up" style="--d:150ms">
+          <div class="skill-icon">📊</div><h3>Visualization &amp; BI</h3>
           <div class="tag-row">
-            <span class="tag">Tableau</span><span class="tag">Power BI</span><span class="tag">Recharts</span>
-            <span class="tag">ggplot2</span><span class="tag">Matplotlib</span>
+            <span class="tag">Tableau</span><span class="tag">Power BI</span>
+            <span class="tag">Google Data Studio</span><span class="tag">ggplot2</span>
           </div>
         </div>
-        <div class="skill-card reveal-up" style="--d:240ms">
-          <div class="skill-icon">🤖</div>
-          <h3>ML / NLP</h3>
+        <div class="skill-card reveal-up" style="--d:200ms">
+          <div class="skill-icon">🗄️</div><h3>Databases</h3>
           <div class="tag-row">
-            <span class="tag">scikit-learn</span><span class="tag">Transformers</span><span class="tag">spaCy</span>
-            <span class="tag">LLMs/GenAI</span><span class="tag">Text-to-SQL</span>
+            <span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+            <span class="tag">MongoDB</span><span class="tag">DynamoDB</span>
           </div>
         </div>
-        <div class="skill-card reveal-up" style="--d:300ms">
-          <div class="skill-icon">🛠️</div>
-          <h3>Tools & Frameworks</h3>
+        <div class="skill-card reveal-up" style="--d:250ms">
+          <div class="skill-icon">🤖</div><h3>ML / NLP</h3>
           <div class="tag-row">
-            <span class="tag">Next.js</span><span class="tag">Git</span><span class="tag">Vercel</span>
-            <span class="tag">Jupyter</span><span class="tag">VS Code</span>
+            <span class="tag">scikit-learn</span><span class="tag">TensorFlow</span>
+            <span class="tag">spaCy</span><span class="tag">Hugging Face</span><span class="tag">LLMs</span>
           </div>
         </div>
       </div>
@@ -432,27 +464,26 @@
 
   <!-- HONORS -->
   <section id="honors" class="section">
-    <div class="container">
-      <div class="section-label reveal-up">Honors & Activities</div>
-      <h2 class="section-title reveal-up">Beyond the <span class="grad-text">code</span></h2>
-
+    <div class="full-container">
+      <div class="section-label reveal-up">Beyond the Code</div>
+      <h2 class="section-title reveal-up">Honors &amp; <span class="grad-text">Activities</span></h2>
       <div class="honors-grid">
         <div class="honor-card reveal-up">
-          <div class="honor-icon">🥋</div>
-          <h3>Sports</h3>
+          <div class="honor-icon">🏆</div>
+          <h3>Events &amp; Highlights</h3>
           <ul>
-            <li>Taekwondo (professional level) — 7 years</li>
-            <li>Cricket — 2 years</li>
-            <li>Interests: cricket, football, competitive gaming</li>
+            <li>Attended <strong>AWS Summit</strong> — Washington D.C. (GenAI, Amazon Aurora, Bedrock)</li>
+            <li>Attended <strong>AI + Robotics Summit</strong> 2024 — Washington D.C. (SCPS)</li>
+            <li>Submitted paper to <strong>FHWA InfoBridge</strong> competition</li>
           </ul>
         </div>
         <div class="honor-card reveal-up" style="--d:100ms">
-          <div class="honor-icon">🏆</div>
-          <h3>Events & Highlights</h3>
+          <div class="honor-icon">🥋</div>
+          <h3>Sports &amp; Interests</h3>
           <ul>
-            <li>Attended AWS Summit — Washington D.C. (GenAI, cloud analytics)</li>
-            <li>Attended AI + Robotics Summit — Washington D.C.</li>
-            <li>Submitted bridge maintenance paper to FHWA InfoBridge</li>
+            <li><strong>Taekwondo</strong> — Professional level, 7 years</li>
+            <li><strong>Cricket</strong> — 2 years competitive play</li>
+            <li>Interests: Cricket, Football, Competitive Gaming</li>
           </ul>
         </div>
       </div>
@@ -461,42 +492,40 @@
 
   <!-- CONTACT -->
   <section id="contact" class="section">
-    <div class="container">
+    <div class="full-container">
       <div class="section-label reveal-up">Contact</div>
       <h2 class="section-title reveal-up">Let's <span class="grad-text">connect</span></h2>
-      <p class="section-sub reveal-up">Send a message — this form opens your email app with everything pre-filled.</p>
-
       <div class="contact-grid">
         <div class="contact-info reveal-up">
           <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
-            </div>
+            <div class="contact-icon">✉️</div>
             <div>
               <div class="contact-label">Email</div>
               <a href="mailto:saharshkoli7007@gmail.com" class="contact-val">saharshkoli7007@gmail.com</a>
             </div>
           </div>
           <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-label">Phone</div>
+              <span class="contact-val">(571) 428-3187</span>
             </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">💼</div>
             <div>
               <div class="contact-label">LinkedIn</div>
               <a href="https://www.linkedin.com/" target="_blank" class="contact-val">linkedin.com/in/saharshkoli</a>
             </div>
           </div>
           <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-            </div>
+            <div class="contact-icon">🐙</div>
             <div>
               <div class="contact-label">GitHub</div>
               <a href="https://github.com/saharshkoli14" target="_blank" class="contact-val">github.com/saharshkoli14</a>
             </div>
           </div>
         </div>
-
         <div class="contact-form-wrap reveal-up" style="--d:100ms">
           <form id="contactForm">
             <div class="form-row">
@@ -520,14 +549,13 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
-    <div class="container footer-inner">
+    <div class="full-container footer-inner">
       <div class="footer-logo">
         <span class="logo-mark">SK</span>
         <span>Saharsh Kamod Koli</span>
       </div>
-      <p class="footer-copy">© <span id="year"></span> · Built with intention · All rights reserved</p>
+      <p class="footer-copy">© <span id="year"></span> · Fairfax, VA · All rights reserved</p>
       <div class="footer-links">
         <a href="https://github.com/saharshkoli14" target="_blank">GitHub</a>
         <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
